@@ -2,11 +2,13 @@ package es.iesjandula.models;
 
 import jakarta.persistence.Embeddable;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Embeddable
 public class MatriculaId implements Serializable
 {
+    @Serial
     private static final long serialVersionUID = -3143967472594707221L;
 
     private Long idAlumno;
