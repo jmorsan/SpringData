@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class MatriculaId implements Serializable
 {
     @Serial
-    private static final long serialVersionUID = -3143967472594707221L;
+    private static final long serialVersionUID = 1153804963326235789L;
 
     private Long idAlumno;
 

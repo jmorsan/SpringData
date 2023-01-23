@@ -19,7 +19,7 @@ public class Asignatura
     @Column(length = 10, nullable = false)
     private Integer curso;
 
-    @Column(length = 25, nullable = false)
+    @Column(length = 100, nullable = false)
     private String nombre;
 
     @Column(length = 25, nullable = false)
