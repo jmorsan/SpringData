@@ -39,4 +39,13 @@ public class Grado
     {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Grado{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

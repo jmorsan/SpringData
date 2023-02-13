@@ -8,11 +8,7 @@ import java.util.List;
 
 public interface IAlumnoRepository extends JpaRepository<Alumno,Long>
 {
-    Alumno findByNombre(String nombre);
+    List<Alumno> findAllByNombre(String nombre);
 
-    AlumnoResponse findNombreByNombreAndApellido1(String nombre, String apellido1);
-
-
-
-    List<Alumno> findAllByOrderByApellido1Asc();
+    List<Alumno> findAllByTelefono(String telefono);
 }

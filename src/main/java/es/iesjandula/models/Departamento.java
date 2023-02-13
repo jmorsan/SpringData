@@ -39,4 +39,13 @@ public class Departamento
     {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Departamento{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

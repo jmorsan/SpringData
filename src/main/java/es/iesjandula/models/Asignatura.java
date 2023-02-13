@@ -114,4 +114,19 @@ public class Asignatura
     {
         this.profesorId = profesor;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Asignatura{" +
+                "id=" + id +
+                ", creditos=" + creditos +
+                ", cuatrimestre=" + cuatrimestre +
+                ", curso=" + curso +
+                ", nombre='" + nombre + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", gradoId=" + gradoId +
+                ", profesorId=" + profesorId +
+                '}';
+    }
 }

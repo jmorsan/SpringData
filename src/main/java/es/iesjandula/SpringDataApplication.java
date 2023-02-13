@@ -1,6 +1,7 @@
 package es.iesjandula;
 
 
+import es.iesjandula.QueryResponse.Consultas;
 import es.iesjandula.parseadores.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
