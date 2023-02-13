@@ -32,17 +32,25 @@ public class SpringDataApplication implements CommandLineRunner
     @Autowired
     private ProfesorParser profesorParser ;
 
+    @Autowired
+    private Consultas consultas;
+
+
 
 
     public static void main(String[] args)
     {
         SpringApplication.run(SpringDataApplication.class, args);
+
+
+
     }
 
 
     @Transactional(readOnly=false)
     public void run(String... args) throws Exception
     {
+        /*
         this.alumnoParser.mostrarAlumnosPro();
         this.cursoParser.mostrarCursos();
         this.departamentoParser.mostrarDepartamentos();
@@ -50,9 +58,13 @@ public class SpringDataApplication implements CommandLineRunner
         this.profesorParser.mostrarProfesores();
         this.asignaturaParser.mostrarAsignaturas();
         this.matriculaParser.mostrarMatriculas();
+        */
 
 
+        consultas.hacerConsultas();
 
     }
+
+
 
 }
