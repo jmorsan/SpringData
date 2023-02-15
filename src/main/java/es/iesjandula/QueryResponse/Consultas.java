@@ -40,38 +40,33 @@ public class Consultas
     {
         System.out.println();
         System.out.println("Alumno con Nombre 'Juan' :");
-        for(Alumno alumno:alumnoRepository.findAllByNombre("Juan"))
+        for(Alumno alumno:alumnoRepository.findByNombre("Juan"))
         {
             System.out.println(alumno);
         }
 
         System.out.println();
         System.out.println("Grados que contengan la palabra 'Ingenieria' :");
-        for(Grado grado: gradoRepository.findAllByNombreContaining("Ingenieria"))
+        for(Grado grado: gradoRepository.findByNombreContaining("Ingenieria"))
         {
             System.out.println(grado);
         }
 
         System.out.println();
         System.out.println("Asignatura que tienen mas de 7 creditos :");
-        for(Asignatura asignatura: asignaturaRepository.findAllByCreditosGreaterThan(7))
+        for(Asignatura asignatura: asignaturaRepository.findByCreditosGreaterThan(7))
         {
             System.out.println(asignatura);
         }
 
         System.out.println();
         System.out.println("Departamentos que empiezan por la letra 'E' ignorando mayusculas  :");
-        for(Departamento departamento: departamentoRepository.findAllByNombreIgnoreCaseIsStartingWith("E"))
+        for(Departamento departamento: departamentoRepository.findByNombreIgnoreCaseIsStartingWith("E"))
         {
             System.out.println(departamento);
         }
 
-        System.out.println();
-        System.out.println("Departamentos que empiezan por la letra 'E' ignorando mayusculas  :");
-        for(Departamento departamento: departamentoRepository.findAllByNombreIgnoreCaseIsStartingWith("E"))
-        {
-            System.out.println(departamento);
-        }
+
 
         System.out.println();
         System.out.println("Top 10 Asignaturas ordenadas desc por creditos (Los 10 Asignaturas que menos creditos tienen) :");
@@ -80,58 +75,50 @@ public class Consultas
             System.out.println(asignatura);
         }
 
-        /*
+
         System.out.println();
-        System.out.println("Asignaturas obligatoria pertenecientes al primer curso :");
-        for(AsignaturaResponse asignaturaResponse: asignaturaRepository.findAllByTipoAndCurso("obligatoria",1))
+        System.out.println("Asignaturas obligatoria pertenecientes al segundo curso :");
+        System.out.println(asignaturaRepository.findTop1ByTipoAndCurso("obligatoria",2));
+        /*
+        for(AsignaturaResponse asignaturaResponse: asignaturaRepository.findNombreTop1ByTipoAndCurso("obligatoria",2))
         {
             System.out.println(asignaturaResponse);
         }
         */
 
+
+
         System.out.println();
         System.out.println("Contar el numero de asignaturas tipo basica :");
 
-        System.out.println(asignaturaRepository.countAllByTipo("básica"));
+        System.out.println(asignaturaRepository.countByTipo("básica"));
 
         System.out.println();
         System.out.println("Asignatura que imparte el profesor Fahey(id 9) :");
-        for(Asignatura asignatura: asignaturaRepository.findAllByProfesorIdId(9L))
+        for(Asignatura asignatura: asignaturaRepository.findByProfesorIdId(9L))
         {
             System.out.println(asignatura);
         }
 
         System.out.println();
         System.out.println("Asignaturas pertenecientes al segundo cuatrimestre del tercer curso :");
-        for(Asignatura asignatura: asignaturaRepository.findAllByCuatrimestreAndCurso(2,3))
+        for(Asignatura asignatura: asignaturaRepository.findByCuatrimestreAndCurso(2,3))
         {
             System.out.println(asignatura);
         }
 
         System.out.println();
         System.out.println("Alumnos que no han registrado el telefono :");
-        for(Alumno alumno:alumnoRepository.findAllByTelefono(" "))
+        for(Alumno alumno:alumnoRepository.findByTelefono(" "))
         {
             System.out.println(alumno);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println();
+        System.out.println("Alumnos cuyo dni termina con la letra 'K' :");
+        for(Alumno alumno:alumnoRepository.findByNifEndsWith("K"))
+        {
+            System.out.println(alumno);
+        }
     }
-
-
-
 }

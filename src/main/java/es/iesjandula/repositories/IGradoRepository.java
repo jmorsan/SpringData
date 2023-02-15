@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IGradoRepository extends JpaRepository<Grado,Long>
 {
-    List<Grado> findAllByNombreContaining(String grado);
+    List<Grado> findByNombreContaining(String grado);
 
 
 }

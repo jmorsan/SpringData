@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IDepartamentoRepository extends JpaRepository<Departamento,Long>
 {
-    List<Departamento>findAllByNombreIgnoreCaseIsStartingWith(String letra);
+    List<Departamento>findByNombreIgnoreCaseIsStartingWith(String letra);
 }
