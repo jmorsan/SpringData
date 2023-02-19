@@ -160,4 +160,21 @@ public class Profesor
     {
         this.idDepartamento = idDepartamento;
     }
+
+    @Override
+    public String toString()
+    {
+        return
+                "ID : " + id +
+                " NIF: " + nif +
+                " Nombre: " + nombre +
+                " Apellidos: " + apellido1 +
+                  apellido2 +
+                " Ciudad: " + ciudad +
+                " Direccion: " + direccion +
+                " Telefono: " + telefono +
+                " Fecha Nacimiento: " + fechaNacimiento +
+                " Sexo='" + sexo +
+                " Departamento ID" + idDepartamento;
+    }
 }

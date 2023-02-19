@@ -1,9 +1,6 @@
 package es.iesjandula.QueryResponse;
 
-import es.iesjandula.models.Alumno;
-import es.iesjandula.models.Asignatura;
-import es.iesjandula.models.Departamento;
-import es.iesjandula.models.Grado;
+import es.iesjandula.models.*;
 import es.iesjandula.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,13 +78,10 @@ public class Consultas
             System.out.println("Asignaturas obligatoria pertenecientes al segundo curso :");
             System.out.println(asignaturaRepository.findTop1ByTipoAndCurso("obligatoria",2));
 
-            for(AsignaturaResponse asignaturaResponse: asignaturaRepository.findNombreTop1ByTipoAndCurso("obligatoria",2))
+            for(AsignaturaGradoResponse asignaturaResponse: asignaturaRepository.findNombreTop1ByTipoAndCurso("obligatoria",2))
             {
                 System.out.println(asignaturaResponse);
             }
-
-
-
 
             System.out.println();
             System.out.println("Contar el numero de asignaturas tipo basica :");
@@ -123,6 +117,10 @@ public class Consultas
             }
          **/
 
+        /**
+         * Native Query
+         */
+        /*
         System.out.println();
         System.out.println("Los alumnos y sus asignaturas matriculadas");
         for(Object[] tabla : asignaturaRepository.listaAlumnoAsignatura())
@@ -157,5 +155,51 @@ public class Consultas
         {
             System.out.println(" Nombre alumno: " + tabla[0] +  "--> Curso: "+ tabla[1]+"/"+tabla[2] );
         }
+        */
+
+        /**
+         * QUERY JPQL
+         */
+
+
+        System.out.println();
+        System.out.println("Nombre y apellidos del alumno por NIF");
+        System.out.println(asignaturaRepository.findAlumnoByNif("97258166K"));
+
+        System.out.println();
+        System.out.println("Asignaturas y grado al que pertenecen");
+        for(AsignaturaGradoResponse asignaturaGradoResponse : asignaturaRepository.findAsignaturaGrado())
+        {
+            System.out.println(asignaturaGradoResponse.toString());
+        }
+
+        System.out.println();
+        System.out.println("Cantidad de asignaturas por NIF");
+        System.out.println(asignaturaRepository.finCantidadAsignaturas("97258166K"));
+
+        System.out.println();
+        System.out.println("Cantidad de Profesores por departamento ID(Informática): ");
+        System.out.println(asignaturaRepository.countProfesorByIdDepartamento(1));
+
+        System.out.println();
+        System.out.println("Profesores por Cuatrimestre: ");
+        for(Profesor profesor :asignaturaRepository.findAsignaturaByCuatrimestre(1))
+        {
+            System.out.println(profesor.toString());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

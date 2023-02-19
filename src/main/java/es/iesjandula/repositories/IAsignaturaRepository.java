@@ -1,12 +1,13 @@
 package es.iesjandula.repositories;
 
 import es.iesjandula.QueryResponse.AlumnoResponse;
-import es.iesjandula.QueryResponse.AsignaturaResponse;
-import es.iesjandula.models.Alumno;
+import es.iesjandula.QueryResponse.AsignaturaGradoResponse;
+import es.iesjandula.QueryResponse.NumeroAlumnosAsigResponse;
 import es.iesjandula.models.Asignatura;
-import es.iesjandula.models.Grado;
+import es.iesjandula.models.Profesor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -16,14 +17,15 @@ public interface IAsignaturaRepository extends JpaRepository<Asignatura,Long>
 
     List<Asignatura> findTop10ByOrderByCreditosAsc();
 
-    AsignaturaResponse findTop1ByTipoAndCurso(String tipo, int curso );
-
     Integer countByTipo(String tipo);
 
     List<Asignatura> findByProfesorIdId(long id);
 
     List<Asignatura> findByCuatrimestreAndCurso(int cuatrimestre,int curso);
 
+    /**
+     * NATIVE QUERY
+     */
     //Los alumnos y sus asignaturas matriculadas
     @Query(value = "select alum.nombre, asig.nombre from alumno alum join matricula mat on alum.id = mat.id_alumno join asignatura asig on asig.id = mat.id_asignatura",nativeQuery = true)
     List<Object[]>listaAlumnoAsignatura();
@@ -43,6 +45,31 @@ public interface IAsignaturaRepository extends JpaRepository<Asignatura,Long>
     //Alumnos y curso que pertenece
     @Query(value = "select alum.nombre, cur.anyo_fin,cur.anyo_inicio from alumno alum join matricula mat on alum.id = mat.id_alumno join curso cur on cur.id = mat.id_curso group by mat.id_alumno",nativeQuery = true)
     List<Object[]>listaAlumnosCurso();
+
+    /**
+     * QUERY JPQL
+     */
+    @Query("select new es.iesjandula.QueryResponse.AsignaturaGradoResponse( asig.nombre,asig.gradoId.nombre) from Asignatura asig join asig.gradoId")
+    List<AsignaturaGradoResponse>findAsignaturaGrado();
+
+    //Datos del alumno
+    @Query("select new es.iesjandula.QueryResponse.AlumnoResponse(alum.nombre,alum.apellido1,alum.apellido2,alum.nif) from Alumno alum where alum.nif= :nif")
+    AlumnoResponse findAlumnoByNif(@Param("nif") String nif);
+
+    @Query("select new es.iesjandula.QueryResponse.NumeroAlumnosAsigResponse(count(mat.idAlumno)) from Matricula mat where mat.idAlumno.nif= :nif ")
+    NumeroAlumnosAsigResponse finCantidadAsignaturas(@Param("nif") String nif);
+
+    @Query("SELECT count(prof) FROM Profesor prof JOIN prof.idDepartamento dep WHERE dep.id = :id")
+    int countProfesorByIdDepartamento(@Param("id") int id);
+
+    @Query("SELECT prof from Asignatura asig JOIN asig.profesorId prof WHERE asig.cuatrimestre = :cuatrimestre")
+    List<Profesor> findAsignaturaByCuatrimestre(@Param("cuatrimestre") int cuatrimestre);
+
+
+
+
+
+
 
 
 
